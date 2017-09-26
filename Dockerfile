@@ -1,6 +1,6 @@
 FROM anapsix/alpine-java
 VOLUME /tmp
-EXPOSE 9999 9990 8080
+EXPOSE 9990 8080
 ENV JBOSS_USER=jbossAdmin JBOSS_PASS=redhat99 USER_ADMIN_NAME=bpmsAdmin USER_ADMIN_GROUP=admin,rest-all,kie-server,rest-client USER_ADMIN_PASS=redhat99 USER1_NAME=joao USER1_GROUP=comercial,user USER1_PASS=joao123 USER2_NAME=maria USER2_GROUP=infra,user USER2_PASS=maria123 USER3_NAME=jose USER3_GROUP=dev,user USER3_PASS=jose123
 WORKDIR /tmp
 COPY *.zip *.cli /tmp/
