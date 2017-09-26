@@ -1,7 +1,7 @@
 FROM anapsix/alpine-java
 VOLUME /tmp
-EXPOSE 9999 9990 8080 8787
-ENV JBOSS_USER=jbossAdmin JBOSS_PASS=redhat99 USER_ADMIN_NAME=bpmsAdmin USER_ADMIN_GROUP=admin,rest-all,kie-server,rest-client USER_ADMIN_PASS=redhat99 USER1_NAME=joao USER1_GROUP=comercial,user USER1_PASS=joao123 USER2_NAME=maria USER2_GROUP=infra,user USER2_PASS=maria123 USER2_NAME=jose USER2_GROUP=dev,user USER2_PASS=jose123
+EXPOSE 9999 9990 8080
+ENV JBOSS_USER=jbossAdmin JBOSS_PASS=redhat99 USER_ADMIN_NAME=bpmsAdmin USER_ADMIN_GROUP=admin,rest-all,kie-server,rest-client USER_ADMIN_PASS=redhat99 USER1_NAME=joao USER1_GROUP=comercial,user USER1_PASS=joao123 USER2_NAME=maria USER2_GROUP=infra,user USER2_PASS=maria123 USER3_NAME=jose USER3_GROUP=dev,user USER3_PASS=jose123
 WORKDIR /tmp
 COPY *.zip *.cli /tmp/
 
@@ -21,6 +21,7 @@ RUN unzip -q /tmp/jboss-eap-7.0.0.zip -d /opt && \
     /opt/jboss-eap/bin/add-user.sh -u "$JBOSS_USER" -p "$JBOSS_PASS" && \
     /opt/jboss-eap/bin/add-user.sh -a -u "$USER_ADMIN_NAME" -p "$USER_ADMIN_PASS" -g "$USER_ADMIN_GROUP" && \
     /opt/jboss-eap/bin/add-user.sh -a -u "$USER1_NAME" -p "$USER1_PASS" -g "$USER1_GROUP" && \
-    /opt/jboss-eap/bin/add-user.sh -a -u "$USER2_NAME" -p "$USER2_PASS" -g "$USER2_GROUP"
+    /opt/jboss-eap/bin/add-user.sh -a -u "$USER2_NAME" -p "$USER2_PASS" -g "$USER2_GROUP" && \
+    /opt/jboss-eap/bin/add-user.sh -a -u "$USER3_NAME" -p "$USER3_PASS" -g "$USER3_GROUP"
 
-CMD /opt/jboss-eap/bin/standalone.sh -Djboss.bind.address.management=0.0.0.0 -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.unsecure=0.0.0.0 --debug
+CMD /opt/jboss-eap/bin/standalone.sh -Djboss.bind.address.management=0.0.0.0 -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.unsecure=0.0.0.0
